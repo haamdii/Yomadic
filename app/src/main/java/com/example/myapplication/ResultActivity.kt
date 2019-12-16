@@ -35,7 +35,7 @@ class ResultActivity : AppCompatActivity() {
         val city = findViewById<TextView>(R.id.city)
 
 
-        var cha = ""
+      // var cha = ""
 
 
         val client = OkHttpClient()
@@ -61,23 +61,25 @@ class ResultActivity : AppCompatActivity() {
                 val homefeed = gson.fromJson(ch, HomeFeed::class.java)
 
 
-                cha = homefeed.response.groups[0].items[0].venue.name
-                name.text = cha
-             //   test.setText( "sayeb" )
+                runOnUiThread( Runnable() {
 
-                cha = homefeed.response.groups[0].items[0].venue.categories[0].name
-                category.text = cha
-
-                cha = homefeed.response.groups[0].items[0].venue.location.city
-                city.text = cha
-
-                cha = homefeed.response.groups[0].items[0].venue.location.lat.toString()
-                lat.text = cha
-
-                cha = homefeed.response.groups[0].items[0].venue.location.lng.toString()
-                lng.text = cha
+                    val cha1 = homefeed.response.groups[0].items[0].venue.name
+                    name.text = cha1
 
 
+                val cha2 = homefeed.response.groups[0].items[0].venue.categories[0].name
+                category.text = cha2
+
+                val cha3 = homefeed.response.groups[0].items[0].venue.location.city
+                city.text = cha3
+
+                val cha4 = homefeed.response.groups[0].items[0].venue.location.lat.toString()
+                lat.text = cha4
+
+                val cha5 = homefeed.response.groups[0].items[0].venue.location.lng.toString()
+                lng.text = cha5
+
+                } )
 /*
                 val ch2 = homefeed.response.groups[0].items[0].venue.name
                  Log.d("name" , ch2 )*/

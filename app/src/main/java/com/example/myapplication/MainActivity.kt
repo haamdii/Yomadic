@@ -36,7 +36,6 @@ class MainActivity : AppCompatActivity() {
 
            i.putExtra("destination" , destination)
 
-
            startActivity(i)
        }
     }
