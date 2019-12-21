@@ -29,14 +29,14 @@ class MainActivity : AppCompatActivity() {
        btn.setOnClickListener {
 
           val  destination = dest.text.toString()
-       //  Log.d("test " , destination )
-          //val trst =""
+
 
            val i = Intent ( this , ResultActivity::class.java)
 
            i.putExtra("destination" , destination)
 
            startActivity(i)
+
        }
     }
 
