@@ -29,7 +29,6 @@ class FetchData (val dest:String?) {
 
             homeFeed = gson.fromJson(ch, HomeFeed::class.java)
 
-            val a = ""
         }
 
         return homeFeed

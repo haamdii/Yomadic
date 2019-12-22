@@ -28,8 +28,7 @@ class MainActivity : AppCompatActivity() {
        // val ch =""
        btn.setOnClickListener {
 
-          val  destination = dest.text.toString()
-
+           val  destination = dest.text.toString()
 
            val i = Intent ( this , ResultActivity::class.java)
 
