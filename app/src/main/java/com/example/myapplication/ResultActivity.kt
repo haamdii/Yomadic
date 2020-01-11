@@ -44,7 +44,7 @@ class ResultActivity : AppCompatActivity() {
     var lat2: Float = 0.0f
     var lng: Float = 0.0f
     var lat: Float = 0.0f
-
+var l=""
 
 
 
