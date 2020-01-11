@@ -35,71 +35,122 @@ class ResultActivity : AppCompatActivity() {
 
         lateinit var mapFragment: SupportMapFragment
         lateinit var googleMap: GoogleMap
+    lateinit var name: String
+    lateinit var name1: String
+    lateinit var name2: String
+    var lat1: Float = 0.0f
+    var lng1: Float = 0.0f
+    var lng2: Float = 0.0f
+    var lat2: Float = 0.0f
+    var lng: Float = 0.0f
+    var lat: Float = 0.0f
 
-        override fun onCreate(savedInstanceState: Bundle?) {
+
+
+
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+
             super.onCreate(savedInstanceState)
             setContentView(R.layout.activity_result)
 
 
 
 
-             CoroutineScope(IO).launch {
-
-                 withContext(Main) {
+           CoroutineScope(IO).launch {
 
 
-                     val dest = intent?.getStringExtra("destination")
-                     val places = FetchData(dest)
-                     val lat = places.getlats()[0]
-                     val lng = places.getlangs()[0]
-                     val name = places.getNames()[0]
+               val job = CoroutineScope(IO).launch {
 
-                     val lat1 = places.getlats()[1]
-                     val lng1 = places.getlangs()[1]
-                     val name1 = places.getNames()[1]
+                   getdata()
+               }
 
-                     val lat2 = places.getlats()[2]
-                     val lng2 = places.getlangs()[2]
-                     val name2 = places.getNames()[2]
+               job.join()
 
-                     mapFragment =
-                         supportFragmentManager.findFragmentById(R.id.map) as SupportMapFragment
-                     mapFragment.getMapAsync(OnMapReadyCallback {
-                         googleMap = it
-
-                         googleMap.isMyLocationEnabled = true         // show your current location ( add location permission in the app )
-
-                  val location1 = LatLng(lat.toDouble(),lng.toDouble())
-                  googleMap.addMarker(MarkerOptions().position(location1).title(name))
-                  googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(location1,12f))
-
-                  val location2=LatLng(lat1.toDouble(),lng1.toDouble())
-                   googleMap.addMarker(MarkerOptions().position(location2).title(name1))
-                         googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(location2,12f))
+               withContext(Main) {
 
 
-                val location3 = LatLng(lat2.toDouble(),lng2.toDouble())
-                         googleMap.addMarker(MarkerOptions().position(location3).title(name2))
-                         googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(location3,12f))
+                   mapFragment =
+                       supportFragmentManager.findFragmentById(R.id.map) as SupportMapFragment
+                   mapFragment.getMapAsync(OnMapReadyCallback {
+                       googleMap = it
+
+                       googleMap.isMyLocationEnabled =
+                           true         // show your current location ( add location permission in the app )
+
+                       val location1 = LatLng(lat.toDouble(), lng.toDouble())
+                       googleMap.addMarker(MarkerOptions().position(location1).title(name))
+                       googleMap.animateCamera(
+                           CameraUpdateFactory.newLatLngZoom(
+                               location1,
+                               12f
+                           )
+                       )
+
+                       val location2 = LatLng(lat1.toDouble(), lng1.toDouble())
+                       googleMap.addMarker(MarkerOptions().position(location2).title(name1))
+                       googleMap.animateCamera(
+                           CameraUpdateFactory.newLatLngZoom(
+                               location2,
+                               12f
+                           )
+                       )
 
 
-                        val lineoption =  PolylineOptions()
-                         lineoption.add(location1)
-                         lineoption.add(location2)
-                         lineoption.add(location3)
-                         lineoption.width(10f)
-                         lineoption.color(Color.GREEN)
-                         lineoption.geodesic(true)
+                       val location3 = LatLng(lat2.toDouble(), lng2.toDouble())
+                       googleMap.addMarker(MarkerOptions().position(location3).title(name2))
+                       googleMap.animateCamera(
+                           CameraUpdateFactory.newLatLngZoom(
+                               location3,
+                               12f
+                           )
+                       )
 
-                         googleMap.addPolyline(lineoption)
+
+                       val lineoption = PolylineOptions()
+                       lineoption.add(location1)
+                       lineoption.add(location2)
+                       lineoption.add(location3)
+                       lineoption.width(10f)
+                       lineoption.color(Color.GREEN)
+                       lineoption.geodesic(true)
+
+                       googleMap.addPolyline(lineoption)
 
 
-                     })
+                   })
 
-                 }
-             }
-        }
-    }
+               }
+
+
+           }}
+
+               suspend fun getdata() {
+
+                    val dest = intent?.getStringExtra("destination")
+                   val  places = FetchData(dest)
+                    lat = places.getlats()[0]
+                    lng = places.getlangs()[0]
+                    name = places.getNames()[0]
+
+                    lat1 = places.getlats()[1]
+                    lng1 = places.getlangs()[1]
+                    name1 = places.getNames()[1]
+
+                    lat2 = places.getlats()[2]
+                    lng2 = places.getlangs()[2]
+                    name2 = places.getNames()[2]
+
+               }
+
+               }
+
+
+
+
+
+
+
 
 
 
