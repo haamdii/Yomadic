@@ -5,7 +5,7 @@ public class InfoWindowData {
     private String name;
     private String infos;
     private String rp;
-
+    private String url ;
 
     public String getName() {
         return name;
@@ -31,5 +31,12 @@ public class InfoWindowData {
         this.rp= rp;
     }
 
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url= url;
+    }
 
 }

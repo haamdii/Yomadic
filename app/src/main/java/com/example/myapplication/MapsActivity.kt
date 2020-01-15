@@ -40,7 +40,10 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback,
      var lat= mutableListOf<Float>()
      var id= mutableListOf<String>()
      var category = mutableListOf<String>()
-    var formattedadress = mutableListOf<List<String>>()
+     var formattedadress = mutableListOf<List<String>>()
+     var venueid = mutableListOf<String>()
+
+    var cat=StringBuilder()
 
     var range =0
     var nb=0
@@ -115,6 +118,105 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback,
         hours =intent.getIntExtra("hours",0)
         days =intent.getIntExtra("days",0)
 
+
+
+        if (inter!="") {
+
+            val l = inter.split(",")
+            if (l.size > 1) {    // plus qu'un seul elt
+                inter=""
+                for (i in 0..l.size - 1) {
+                     val ch = when (l[i]) {
+
+                         "Bank" -> "4bf58dd8d48988d10a951735"
+
+                         "Cafeteria" -> "4bf58dd8d48988d128941735"
+                         "Café"-> "4bf58dd8d48988d16d941735"
+                         "Coffee Shop" -> "4bf58dd8d48988d1e0931735"
+
+                          "Restaurant" -> "4d4b7105d754a06374d81259"
+                          "Food"  -> "4d4b7105d754a06374d81259"
+
+                         "landmark" -> "4bf58dd8d48988d12d941735"
+                         "Monument" -> "4bf58dd8d48988d12d941735"
+                         "Capitol Building"->"4bf58dd8d48988d12a941735"
+                         "City Hall"->"4bf58dd8d48988d129941735"
+                         "Town Hall"->"52e81612bcbc57f1066b7a38"
+                         "Mosque"->"4bf58dd8d48988d138941735"
+                         "Church"->"4bf58dd8d48988d132941735"
+                         "Buddhist Temple"->"52e81612bcbc57f1066b7a3e"
+                         "Temple"->"4bf58dd8d48988d13a941735"
+                         "Airport"->"4bf58dd8d48988d1ed931735"
+                         "Airport Terminal"->"4bf58dd8d48988d1eb931735"
+                         "Bus line"->"4bf58dd8d48988d12b951735"
+                         "Bus Station"->"4bf58dd8d48988d1fe931735"
+                         "Bus Stop"->"52f2ab2ebcbc57f1066b8b4f"
+                         "Metro Station"->"4bf58dd8d48988d1fd931735"
+
+                         "Taxi stand"->"53fca564498e1a175f32528b"
+                         "Train station platform"->"4f4531504b9074f6e4fb0102"
+                         "Bridge"->"4bf58dd8d48988d1df941735"
+                         "Castle"->"50aaa49e4b90af0d42d5de11"
+
+                         "Hospital"->"4bf58dd8d48988d196941735"
+                         "Hospital ward"->"58daa1558bbb0b01f18ec1f7"
+                         "Maternity clinic"->"56aa371be4b08b9a8d5734ff"
+                         "Emergency room"->"4bf58dd8d48988d194941735"
+                         "BAthing Area"->"52e81612bcbc57f1066b7a28"
+                         "Recreation center"->"52e81612bcbc57f1066b7a26"
+                         "Scenic lookout"->"4bf58dd8d48988d165941735"
+                         "Waterfall"->"56aa371be4b08b9a8d573560"
+
+                         "Cultural center"->"52e81612bcbc57f1066b7a32"
+                         "Event space"->"4bf58dd8d48988d171941735"
+                         "Outdoor Event Space"->"56aa371be4b08b9a8d57356a"
+                         "Library"->"4bf58dd8d48988d12f941735"
+                         "Amphitheater"->"56aa371be4b08b9a8d5734db"
+                         "Gallery art"->"56aa371be4b08b9a8d5734db"
+                         "Movie Theater"->"4bf58dd8d48988d17f941735"
+                         "Theater"->"4bf58dd8d48988d137941735"
+                         "Casino"->"4bf58dd8d48988d17c941735"
+                         "Circus"->"52e81612bcbc57f1066b79e7"
+                         "Beach"->"52e81612bcbc57f1066b7a30"
+                         "Theme Park Ride"->"5109983191d435c0d71c2bb1"
+                             "Attraction"->"5109983191d435c0d71c2bb1"
+
+                         "Bowling Green"-> "52e81612bcbc57f1066b7a2f"
+                         "Basketball Court"->"4bf58dd8d48988d1e1941735"
+                         "Curling Ice"->"56aa371be4b08b9a8d57351a"
+                         "Golf Course"->"4bf58dd8d48988d1e6941735"
+                         "Boxing Gym"->"52f2ab2ebcbc57f1066b8b47"
+                         "Gym Pool"->"4bf58dd8d48988d105941735"
+                         "Gymnastics Gym"->"52f2ab2ebcbc57f1066b8b48"
+                         "Gym"->"4bf58dd8d48988d176941735"
+                         "Weight Loss Center"->"590a0744340a5803fd8508c3"
+                         "Skate Park"->"4bf58dd8d48988d167941735"
+                         "Soccer Field"->"4cce455aebf7b749d5e191f5"
+                         "Tennis Court"->"4e39a956bd410d7aed40cbc3"
+                         "Pool"->"4bf58dd8d48988d15e941735"
+                         "Supermarket"->"52f2ab2ebcbc57f1066b8b46"
+                         "Market"->"50be8ee891d4fa8dcc7199a7"
+                         "Big Box Store"->"52f2ab2ebcbc57f1066b8b42"
+                         "Basketball Stadium"->"4bf58dd8d48988d18b941735"
+                         "Football Stadium"->"4bf58dd8d48988d189941735"
+                         "Tennis Stadium"->"4e39a891bd410d7aed40cbc2"
+
+                         "Soccer Stadium"->"4bf58dd8d48988d188941735"
+                         "Zoo"->"58daa1558bbb0b01f18ec1fd"
+                         "Nightclub"->"4bf58dd8d48988d11f941735"
+
+                         "Mountain"->"4eb1d4d54b900d56c88a45fc"
+                         "Art Museum"->"4bf58dd8d48988d18f941735"
+                         "History Museum"->"4bf58dd8d48988d190941735"
+                         "Science Museum"->"4bf58dd8d48988d191941735"
+                         else -> ""
+                    }
+
+                 cat.append("$ch,")
+                }
+            }
+        }
+
         period+=(24*days+hours)*60
 
         if (period>=360) {
@@ -124,14 +226,14 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback,
             distance="1"
         }
 
-        val  places = FetchData(dest,inter,distance,popularity)
+        val  places = FetchData(dest,inter,distance,popularity,cat.toString())
         lat = places.getlats()
         lng = places.getlangs()
         name = places.getNames()
         id = places.getcategoriesids()
         category=places.getcategoriesnames()
         formattedadress = places.getformattedadresses()
-
+        venueid=places.getvenuesids()
 
     }
 
@@ -279,6 +381,9 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback,
             var ch = StringBuilder()
             ch.append("Address:")
 
+            val size="1900x1900"
+
+
             if ( (id.size - i) > 0 ) {                       // il y a encore des données à afficher
                 if (period > duree) {
                     rhours = duree / 60
@@ -286,8 +391,6 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback,
 
                    info.name= "(#$range) ${name[i]} : ${category[i]} "
                    info.setrp( "Stay there for : $rhours Hour(s) $rmins Min(s)")
-
-
 
 
                     for (j in 0..formattedadress[i].size-1) {
@@ -298,6 +401,16 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback,
 
                     info.infos=ch.toString()
 
+                    val a=venueid[i]
+                    val images = FetchImages(venueid[i])
+
+
+                    val prefix= images.getPrefix()
+                    val suffix = images.getSuffix()
+                    val url= prefix+size+suffix
+
+                    info.url=url
+
                      val m = mMap.addMarker(markerOptions)
                      m?.tag =info
                      m?.showInfoWindow()
@@ -305,7 +418,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback,
                 } else {
 
                     rhours = period / 60
-                    rmins = (period % 60) * 60
+                    rmins = (period % 60)
 
                     info.name= "(#$range) ${name[i]} : ${category[i]} "
                     info.setrp( "Stay there for : $rhours Hour(s) $rmins Min(s)")
@@ -325,7 +438,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback,
                 period -= duree
                 i++
                 mMap.addPolyline(lineoption)
-                delay(3000)
+                delay(3500)
             }
             else break
         }

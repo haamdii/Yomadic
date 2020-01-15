@@ -22,7 +22,7 @@
         android:layout_marginLeft="18dp"
         android:layout_marginEnd="24dp"
         android:layout_marginRight="24dp"
-        android:layout_marginBottom="150dp"
+        android:layout_marginBottom="180dp"
         android:text="TextView"
         android:textColor="#F44336"
         android:textStyle="bold"
@@ -57,11 +57,26 @@
         android:layout_marginLeft="32dp"
         android:layout_marginEnd="40dp"
         android:layout_marginRight="40dp"
-        android:layout_marginBottom="80dp"
+        android:layout_marginBottom="110dp"
         android:text="TextView"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/pic"
+        android:layout_width="150dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="33dp"
+        android:layout_marginLeft="33dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="33dp"
+        android:layout_marginRight="33dp"
+        app:layout_constraintBottom_toTopOf="@+id/infos"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/name"
+        app:srcCompat="@drawable/common_full_open_on_phone" />
 </androidx.constraintlayout.widget.ConstraintLayout>
